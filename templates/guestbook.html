@@ -3,18 +3,31 @@
 
 <head>
     <title>Guestbook</title>
+     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+
 </head>
 
 <body>
     <h1>Guestbook</h1>
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
 
     <h2>Messaggi</h2>
     <ul>
         {% for message in messages %}
-        <li>
-            <strong>{{ message.name }}</strong>:
+        <li class="bb">
+            <span>
+                <strong>{{ message.name }}</strong>
+                <small class="float-right">{{ message.created_at }}</small>
+            </span>
             <p>{{ message.message }}</p>
-            <small>{{ message.created_at }}</small>
         </li>
         {% endfor %}
     </ul>
@@ -30,15 +43,6 @@
         <button type="submit">Invia Messaggio</button>
     </form>
 
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <ul class=flashes>
-        {% for message in messages %}
-        <li>{{ message }}</li>
-        {% endfor %}
-    </ul>
-    {% endif %}
-    {% endwith %}
 </body>
 
 </html>

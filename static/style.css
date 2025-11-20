@@ -1,0 +1,89 @@
+body {
+  font-family: sans-serif;
+  margin: 0;
+  padding: 0;
+  background-color: #f4f4f4; /* Sfondo leggero */
+}
+
+h1, h2 {
+  color: #333; /* Colore del testo principale */
+  margin-bottom: 20px;
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 20px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  padding: 20px;
+}
+
+ul li {
+  margin-bottom: 5px;
+  padding: 5px;
+
+  border-radius: 5px;
+}
+
+form {
+  margin: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+label {
+  display: block; /* Ogni label su una riga */
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+input[type="text"],
+textarea {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-sizing: border-box; /* Include padding e border nella larghezza */
+}
+
+button {
+  background-color: #4CAF50; /* Colore del bottone */
+  color: white;
+  padding: 10px 15px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  width: 100%;
+  margin-bottom: 10px;
+}
+
+button:hover {
+  background-color: #3e8e41;
+}
+
+.float-right {
+  float: right;
+}
+
+.float-left {
+  float: left;
+}
+
+.bt{
+    border-top: gray 1px solid;
+}
+
+.br{
+    border-right: gray 1px solid;
+}
+
+.bb{
+    border-bottom: gray 1px solid;
+}   
+.bl{
+    border-left: gray 1px solid;
+}
