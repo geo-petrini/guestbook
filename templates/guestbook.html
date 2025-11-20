@@ -3,37 +3,40 @@
 
 <head>
     <title>Guestbook</title>
-     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='paper.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 
 </head>
 
-<body>
+<body class="container">
     <h1>Guestbook</h1>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
-    <ul>
+    <ul class="padding-small">
         {% for message in messages %}
-        <li>{{ message }}</li>
+        <li class="alert alert-warning">{{ message }}</li>
         {% endfor %}
     </ul>
     {% endif %}
     {% endwith %}
 
     <h2>Messaggi</h2>
-    <ul>
+    <div class="border padding child-borders">
         {% for message in messages %}
-        <li class="bb">
-            <span>
-                <strong>{{ message.name }}</strong>
-                <small class="float-right">{{ message.created_at }}</small>
-            </span>
-            <p>{{ message.message }}</p>
-        </li>
+        <div class="card padding.small margin-bottom">
+            <div class="card-body">
+                <span>
+                    <strong>{{ message.name }}</strong>
+                    <small class="float-right">{{ message.created_at }}</small>
+                </span>
+                <p class="card-text">{{ message.message }}</p>
+            </div>
+        </div>
         {% endfor %}
-    </ul>
+    </div>
 
     <h2>Aggiungi Messaggio</h2>
-    <form method="POST">
+    <form method="POST" class="border border-3 padding">
         <label for="name">Nome:</label>
         <input type="text" id="name" name="name" required><br><br>
 
