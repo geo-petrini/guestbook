@@ -1,0 +1,3 @@
+.venv
+guestbook.db
+__pycache__
