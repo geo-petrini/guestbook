@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>Guestbook</title>
 </head>
+
 <body>
     <h1>Guestbook</h1>
 
     <h2>Messaggi</h2>
     <ul>
         {% for message in messages %}
-            <li>
-                <strong>{{ message.name }}</strong>:
-                <p>{{ message.message }}</p>
-                <small>{{ message.created_at }}</small>
-            </li>
+        <li>
+            <strong>{{ message.name }}</strong>:
+            <p>{{ message.message }}</p>
+            <small>{{ message.created_at }}</small>
+        </li>
         {% endfor %}
     </ul>
 
@@ -27,5 +29,16 @@
 
         <button type="submit">Invia Messaggio</button>
     </form>
+
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <ul class=flashes>
+        {% for message in messages %}
+        <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+    {% endif %}
+    {% endwith %}
 </body>
+
 </html>

@@ -4,12 +4,24 @@ from models import db, Message
 from routes import app as guestbook_bp
 from peewee import MySQLDatabase, SqliteDatabase
 import os
+import random
+import string
+
+
+def _random_string(size=16):
+    # Source - https://stackoverflow.com/a
+    # Posted by Ignacio Vazquez-Abrams, modified by community. See post 'Timeline' for change history
+    # Retrieved 2025-11-20, License - CC BY-SA 4.0
+
+    return ''.join(random.choices(string.ascii_uppercase + string.digits, k=size))
 
 
 def create_app():
     load_dotenv()
 
     app = Flask(__name__)
+
+    app.config["SECRET_KEY"] = os.getenv("SECRET_KEY", _random_string(32))
 
     if os.getenv("DATABASE_HOST"):  # Se è configurato usa MySQL
         print("Inizializzo MySQL")
