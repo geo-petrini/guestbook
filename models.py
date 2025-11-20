@@ -16,3 +16,12 @@ class Message(Model):
 
     def __repr__(self):
         return f"<Message id={self.id}, name='{self.name}', message='{self.message}'>"
+
+
+
+def get_message_by_name(name):
+    try:
+        #come select ma solo 1 record e genera DoesNotExist se non esiste
+        return Message.get(Message.name == name)
+    except DoesNotExist:
+        return None

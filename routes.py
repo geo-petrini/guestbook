@@ -1,5 +1,5 @@
 from flask import Blueprint, render_template, request, flash, redirect, url_for
-from models import Message
+from models import Message, get_message_by_name
 
 app = Blueprint("guestbook", __name__)
 
@@ -12,12 +12,19 @@ def root():
 
 @app.route("/", methods=["POST"])
 def post():
-    name = request.form["name"]
-    message = request.form["message"]
+    name = request.form.get("name")
+    message = request.form.get("message")
+
+    if not name:
+        flash("Il campo 'Nome' è obbligatorio")
+        return redirect(url_for('guestbook.root'))
+    if not message:
+        flash("Il campo 'Messaggio' è obbligatorio")
+        return redirect(url_for('guestbook.root'))
 
     #check if user (name) already posted a message
-    message = Message.get(Message.name == name)
-    if message:
+    record = get_message_by_name(name)
+    if record:
         flash('Hai già lasciato un messaggio')
     else:
         Message.create(name=name, message=message)  #crea l'istanza e salva il record 
