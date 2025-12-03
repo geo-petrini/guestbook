@@ -1,17 +1,14 @@
-from peewee import *
 from datetime import datetime
+from .database import BaseModel
+from peewee import CharField, DateTimeField, DoesNotExist
 
-# Il database verrà configurato da app.py
-db = DatabaseProxy()
-
-
-class Message(Model):
+class Message(BaseModel):
     name = CharField(unique=True, max_length=255)
     message = CharField(max_length=255)
     created_at = DateTimeField(default=datetime.now)
 
     class Meta:
-        database = db
+        #peewee unisce le classi Meta in una gerarchia, quindi ereditiamo da BaseModel.Meta
         table_name = 'messages'
 
     def __repr__(self):

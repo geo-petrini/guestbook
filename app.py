@@ -2,7 +2,7 @@ from flask import Flask
 from dotenv import load_dotenv
 from models import db, Message
 from routes import app as guestbook_bp
-from peewee import MySQLDatabase, SqliteDatabase
+from peewee import SqliteDatabase, MySQLDatabase
 import os
 import random
 import string
@@ -31,6 +31,8 @@ def create_app():
         mysql_user = os.getenv("DATABASE_USER", "root")
         mysql_password = os.getenv("DATABASE_PASSWORD", "")
 
+        print(f"Connessione a MySQL su {mysql_host} con utente {mysql_user}")
+
         database = MySQLDatabase(
             mysql_db,
             host=mysql_host,
@@ -42,6 +44,9 @@ def create_app():
     else:  # Altrimenti fallback con SQLite
         print("MySQL non configurato, fallback a SQLite")
         sqlite_name = os.getenv("SQLITE_DB", "guestbook.db")
+
+        print(f"Connessione a SQLite sul file {sqlite_name}")
+
         database = SqliteDatabase(sqlite_name)
 
     # Inizializza il proxy
