@@ -1,14 +1,6 @@
-<!DOCTYPE html>
-<html>
+{% extends "base.html" %}
 
-<head>
-    <title>Guestbook</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='paper.min.css') }}">
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
-
-</head>
-
-<body class="container">
+{% block content %}
     <h1>Guestbook</h1>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -46,6 +38,4 @@
         <button type="submit">Invia Messaggio</button>
     </form>
 
-</body>
-
-</html>
+{% endblock %}

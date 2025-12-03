@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>{% block title %}Guestbook{% endblock %}</title>
+
+    {% block stylesheet %}
+        {% include 'partials/stylesheet.html' %}
+    {% endblock %}
+
+    {% block favicon %}
+        {% include 'partials/favicon.html' %}
+    {% endblock %}
+</head>
+
+<body class="container">
+    {% block content %}
+    <!-- Qui va il contenuto della pagina -->
+    {% endblock %}
+</body>
+
+</html>
