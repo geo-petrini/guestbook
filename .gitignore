@@ -1,3 +1,5 @@
 .venv
 guestbook.db
 __pycache__
+/instance/guestbook.db
+.env

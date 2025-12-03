@@ -2,7 +2,7 @@ version: "3.9"
 
 services:
   web:
-    image: python:3.9-slim-buster
+    image: python:3.13-slim-buster
     container_name: my-flask-guestbook
     working_dir: /app
     volumes:

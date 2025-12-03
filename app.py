@@ -6,6 +6,7 @@ from peewee import SqliteDatabase, MySQLDatabase
 import os
 import random
 import string
+from pathlib import Path
 
 
 def _random_string(size=16):
@@ -43,7 +44,9 @@ def create_app():
 
     else:  # Altrimenti fallback con SQLite
         print("MySQL non configurato, fallback a SQLite")
-        sqlite_name = os.getenv("SQLITE_DB", "guestbook.db")
+        sqlite_name = os.getenv("SQLITE_DB", "instance/guestbook.db")
+        db_path = Path(sqlite_name).parent
+        db_path.mkdir(parents=True, exist_ok=True)
 
         print(f"Connessione a SQLite sul file {sqlite_name}")
 
@@ -67,4 +70,4 @@ def create_app():
 
 if __name__ == "__main__":
     app = create_app()
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=5000)
