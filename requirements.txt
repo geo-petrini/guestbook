@@ -2,3 +2,4 @@ Flask
 peewee
 python-dotenv
 pymysql
+cryptography
