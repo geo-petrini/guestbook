@@ -12,7 +12,8 @@ services:
       - DATABASE_PASSWORD=${DB_PASSWORD}
       - DATABASE_NAME=guestbook_db
     depends_on:
-      - db
+      db:
+        condition: service_healthy
 
   db:
     image: mysql:8.0
@@ -26,6 +27,11 @@ services:
       - db_data:/var/lib/mysql
     ports:
       - "3306:3306"
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      interval: 10s
+      timeout: 5s
+      retries: 5      
 
 volumes:
   db_data:
