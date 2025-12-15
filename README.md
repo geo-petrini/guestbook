@@ -160,7 +160,7 @@ docker build --pull --rm -f "dockerfile" -t "guestbook:latest" .
 Il comando seguente permette di eseguire l'immagine come container, utilizzando il db interno SQLite.
 
 Attenzione, se il container viene chiuso verranno persi tutti i dati.
-```shell
+```docker
 docker run -d \
   --name guestbook \
   -p 5000:5000 \
@@ -168,7 +168,7 @@ docker run -d \
 ```
 
 Per garantire la persistenza usare l'opzione -v per creare un volume e associarlo al db SQLite
-```shell
+```docker
 docker run -d \
   --name guestbook \
   -p 5000:5000 \
