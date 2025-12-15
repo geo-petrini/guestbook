@@ -3,11 +3,7 @@ version: "3.9"
 services:
   web:
     image: guestbook:latest
-    container_name: my-flask-guestbook
-    working_dir: /app
-    volumes:
-      - ./app:/app
-      - ./static:/app/static # per i file statici
+    container_name: guestbook
     ports:
       - "5000:5000"
     environment:
