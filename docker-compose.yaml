@@ -6,8 +6,8 @@ services:
       - "5000:5000"
     environment:
       - DATABASE_HOST=db
-      - DATABASE_USER=${DB_USER}
-      - DATABASE_PASSWORD=${DB_PASSWORD}
+      - DATABASE_USER=myuser
+      - DATABASE_PASSWORD=mypassword
       - DATABASE_NAME=guestbook_db
     depends_on:
       db:
@@ -18,8 +18,8 @@ services:
     container_name: my_mysql_db
     environment:
       MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_USER: ${DB_USER}
-      MYSQL_PASSWORD: ${DB_PASSWORD}
+      MYSQL_USER: myuser
+      MYSQL_PASSWORD: mypassword
       MYSQL_DATABASE: guestbook_db
     volumes:
       - db_data:/var/lib/mysql
