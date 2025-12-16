@@ -1,0 +1,718 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>tutorial.md</title>
+<meta http-equiv="Content-type" content="text/html;charset=UTF-8">
+
+<style>
+/* https://github.com/microsoft/vscode/blob/master/extensions/markdown-language-features/media/markdown.css */
+/*---------------------------------------------------------------------------------------------
+ *  Copyright (c) Microsoft Corporation. All rights reserved.
+ *  Licensed under the MIT License. See License.txt in the project root for license information.
+ *--------------------------------------------------------------------------------------------*/
+
+body {
+	font-family: var(--vscode-markdown-font-family, -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif);
+	font-size: var(--vscode-markdown-font-size, 14px);
+	padding: 0 26px;
+	line-height: var(--vscode-markdown-line-height, 22px);
+	word-wrap: break-word;
+}
+
+#code-csp-warning {
+	position: fixed;
+	top: 0;
+	right: 0;
+	color: white;
+	margin: 16px;
+	text-align: center;
+	font-size: 12px;
+	font-family: sans-serif;
+	background-color:#444444;
+	cursor: pointer;
+	padding: 6px;
+	box-shadow: 1px 1px 1px rgba(0,0,0,.25);
+}
+
+#code-csp-warning:hover {
+	text-decoration: none;
+	background-color:#007acc;
+	box-shadow: 2px 2px 2px rgba(0,0,0,.25);
+}
+
+body.scrollBeyondLastLine {
+	margin-bottom: calc(100vh - 22px);
+}
+
+body.showEditorSelection .code-line {
+	position: relative;
+}
+
+body.showEditorSelection .code-active-line:before,
+body.showEditorSelection .code-line:hover:before {
+	content: "";
+	display: block;
+	position: absolute;
+	top: 0;
+	left: -12px;
+	height: 100%;
+}
+
+body.showEditorSelection li.code-active-line:before,
+body.showEditorSelection li.code-line:hover:before {
+	left: -30px;
+}
+
+.vscode-light.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.15);
+}
+
+.vscode-light.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(0, 0, 0, 0.40);
+}
+
+.vscode-light.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-dark.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.4);
+}
+
+.vscode-dark.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 255, 255, 0.60);
+}
+
+.vscode-dark.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+.vscode-high-contrast.showEditorSelection .code-active-line:before {
+	border-left: 3px solid rgba(255, 160, 0, 0.7);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line:hover:before {
+	border-left: 3px solid rgba(255, 160, 0, 1);
+}
+
+.vscode-high-contrast.showEditorSelection .code-line .code-line:hover:before {
+	border-left: none;
+}
+
+img {
+	max-width: 100%;
+	max-height: 100%;
+}
+
+a {
+	text-decoration: none;
+}
+
+a:hover {
+	text-decoration: underline;
+}
+
+a:focus,
+input:focus,
+select:focus,
+textarea:focus {
+	outline: 1px solid -webkit-focus-ring-color;
+	outline-offset: -1px;
+}
+
+hr {
+	border: 0;
+	height: 2px;
+	border-bottom: 2px solid;
+}
+
+h1 {
+	padding-bottom: 0.3em;
+	line-height: 1.2;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+}
+
+h1, h2, h3 {
+	font-weight: normal;
+}
+
+table {
+	border-collapse: collapse;
+}
+
+table > thead > tr > th {
+	text-align: left;
+	border-bottom: 1px solid;
+}
+
+table > thead > tr > th,
+table > thead > tr > td,
+table > tbody > tr > th,
+table > tbody > tr > td {
+	padding: 5px 10px;
+}
+
+table > tbody > tr + tr > td {
+	border-top: 1px solid;
+}
+
+blockquote {
+	margin: 0 7px 0 5px;
+	padding: 0 16px 0 10px;
+	border-left-width: 5px;
+	border-left-style: solid;
+}
+
+code {
+	font-family: Menlo, Monaco, Consolas, "Droid Sans Mono", "Courier New", monospace, "Droid Sans Fallback";
+	font-size: 1em;
+	line-height: 1.357em;
+}
+
+body.wordWrap pre {
+	white-space: pre-wrap;
+}
+
+pre:not(.hljs),
+pre.hljs code > div {
+	padding: 16px;
+	border-radius: 3px;
+	overflow: auto;
+}
+
+pre code {
+	color: var(--vscode-editor-foreground);
+	tab-size: 4;
+}
+
+/** Theming */
+
+.vscode-light pre {
+	background-color: rgba(220, 220, 220, 0.4);
+}
+
+.vscode-dark pre {
+	background-color: rgba(10, 10, 10, 0.4);
+}
+
+.vscode-high-contrast pre {
+	background-color: rgb(0, 0, 0);
+}
+
+.vscode-high-contrast h1 {
+	border-color: rgb(0, 0, 0);
+}
+
+.vscode-light table > thead > tr > th {
+	border-color: rgba(0, 0, 0, 0.69);
+}
+
+.vscode-dark table > thead > tr > th {
+	border-color: rgba(255, 255, 255, 0.69);
+}
+
+.vscode-light h1,
+.vscode-light hr,
+.vscode-light table > tbody > tr + tr > td {
+	border-color: rgba(0, 0, 0, 0.18);
+}
+
+.vscode-dark h1,
+.vscode-dark hr,
+.vscode-dark table > tbody > tr + tr > td {
+	border-color: rgba(255, 255, 255, 0.18);
+}
+
+</style>
+
+<style>
+/* Tomorrow Theme */
+/* http://jmblog.github.com/color-themes-for-google-code-highlightjs */
+/* Original theme - https://github.com/chriskempson/tomorrow-theme */
+
+/* Tomorrow Comment */
+.hljs-comment,
+.hljs-quote {
+	color: #8e908c;
+}
+
+/* Tomorrow Red */
+.hljs-variable,
+.hljs-template-variable,
+.hljs-tag,
+.hljs-name,
+.hljs-selector-id,
+.hljs-selector-class,
+.hljs-regexp,
+.hljs-deletion {
+	color: #c82829;
+}
+
+/* Tomorrow Orange */
+.hljs-number,
+.hljs-built_in,
+.hljs-builtin-name,
+.hljs-literal,
+.hljs-type,
+.hljs-params,
+.hljs-meta,
+.hljs-link {
+	color: #f5871f;
+}
+
+/* Tomorrow Yellow */
+.hljs-attribute {
+	color: #eab700;
+}
+
+/* Tomorrow Green */
+.hljs-string,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-addition {
+	color: #718c00;
+}
+
+/* Tomorrow Blue */
+.hljs-title,
+.hljs-section {
+	color: #4271ae;
+}
+
+/* Tomorrow Purple */
+.hljs-keyword,
+.hljs-selector-tag {
+	color: #8959a8;
+}
+
+.hljs {
+	display: block;
+	overflow-x: auto;
+	color: #4d4d4c;
+	padding: 0.5em;
+}
+
+.hljs-emphasis {
+	font-style: italic;
+}
+
+.hljs-strong {
+	font-weight: bold;
+}
+</style>
+
+<style>
+/*
+ * Markdown PDF CSS
+ */
+
+ body {
+	font-family: -apple-system, BlinkMacSystemFont, "Segoe WPC", "Segoe UI", "Ubuntu", "Droid Sans", sans-serif, "Meiryo";
+	padding: 0 12px;
+}
+
+pre {
+	background-color: #f8f8f8;
+	border: 1px solid #cccccc;
+	border-radius: 3px;
+	overflow-x: auto;
+	white-space: pre-wrap;
+	overflow-wrap: break-word;
+}
+
+pre:not(.hljs) {
+	padding: 23px;
+	line-height: 19px;
+}
+
+blockquote {
+	background: rgba(127, 127, 127, 0.1);
+	border-color: rgba(0, 122, 204, 0.5);
+}
+
+.emoji {
+	height: 1.4em;
+}
+
+code {
+	font-size: 14px;
+	line-height: 19px;
+}
+
+/* for inline code */
+:not(pre):not(.hljs) > code {
+	color: #C9AE75; /* Change the old color so it seems less like an error */
+	font-size: inherit;
+}
+
+/* Page Break : use <div class="page"/> to insert page break
+-------------------------------------------------------- */
+.page {
+	page-break-after: always;
+}
+
+</style>
+
+<script src="https://unpkg.com/mermaid/dist/mermaid.min.js"></script>
+</head>
+<body>
+  <script>
+    mermaid.initialize({
+      startOnLoad: true,
+      theme: document.body.classList.contains('vscode-dark') || document.body.classList.contains('vscode-high-contrast')
+          ? 'dark'
+          : 'default'
+    });
+  </script>
+<h1 id="tutorial">Tutorial</h1>
+<h2 id="guestbook-passo-a-passo-verso-docker">Guestbook: passo a passo verso Docker</h2>
+<p>L’applicazione <em>guestbook</em> è un esempio creato per introdurre Docker in modo progressivo e concreto.</p>
+<h3 id="prerequisiti">Prerequisiti</h3>
+<ul>
+<li>Docker installato</li>
+<li>Docker Compose disponibile</li>
+<li>Conoscenze di base su container e immagini</li>
+</ul>
+<h2 id="passo-1-%E2%80%93-comprendere-lapplicazione">Passo 1 – Comprendere l’applicazione</h2>
+<p><strong>Obiettivo didattico</strong></p>
+<ul>
+<li>Separare il <em>funzionamento applicativo</em> dall’infrastruttura</li>
+<li>Capire cosa fa l’app prima di containerizzarla</li>
+</ul>
+<p><strong>Istruzioni</strong></p>
+<ol>
+<li>Accedere al repository dell'applicativo: https://github.com/geo-petrini/guestbook</li>
+<li>Leggere il file README.md</li>
+</ol>
+<h2 id="passo-2-%E2%80%93-build-dellimmagine-docker">Passo 2 – Build dell’immagine Docker</h2>
+<p><strong>Obiettivo</strong></p>
+<ul>
+<li>Capire la relazione tra Dockerfile e immagine</li>
+</ul>
+<p><strong>Attività</strong></p>
+<ol>
+<li>Creare l'immagine usando il dockerfile presente nel repository, osservare come docker build cerca automaticamente un dockerfile nella cartella indicata.</li>
+</ol>
+<pre class="hljs"><code><div>docker build -t guestbook:latest .
+</div></code></pre>
+<ol start="2">
+<li>Provare argomenti aggiuntivi</li>
+</ol>
+<pre class="hljs"><code><div>docker build --pull --rm -f <span class="hljs-string">"dockerfile"</span> -t <span class="hljs-string">"guestbook:latest"</span> .
+</div></code></pre>
+<table>
+<thead>
+<tr>
+<th>Comando / Flag</th>
+<th>Descrizione</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>docker build</td>
+<td>Il comando principale per istruire Docker a costruire un'immagine da un Dockerfile e un contesto specifico.</td>
+</tr>
+<tr>
+<td>--pull</td>
+<td>Forza l'aggiornamento dell'immagine base. Questo flag assicura che Docker scarichi sempre l'ultima versione dell'immagine base specificata nell'istruzione FROM del tuo Dockerfile (ad esempio FROM python:3.13-slim-buster) anche se ne ha già una versione cache localmente.</td>
+</tr>
+<tr>
+<td>--rm</td>
+<td>Rimuove i container intermedi. Durante il processo di build ogni istruzione del Dockerfile crea un container temporaneo. Questo flag assicura che una volta completato il layer tali container temporanei vengano automaticamente rimossi per evitare di lasciare residui sul sistema.</td>
+</tr>
+<tr>
+<td>-f &quot;dockerfile&quot;</td>
+<td>Specifica il nome del Dockerfile. Indica che il file delle istruzioni da usare si chiama &quot;&quot;dockerfile&quot;&quot; (con la 'd' minuscola) invece del nome predefinito Dockerfile (con la 'D' maiuscola). Se il tuo file è chiamato Dockerfile questo flag è superfluo ma se hai nomi personalizzati (es. Dockerfile.prod) è essenziale.</td>
+</tr>
+<tr>
+<td>-t &quot;guestbook:latest&quot;</td>
+<td>Tagga (Etichetta) l'immagine finale. Assegna il nome guestbook e il tag di versione latest all'immagine risultante rendendola facilmente identificabile.</td>
+</tr>
+<tr>
+<td>.</td>
+<td>Contesto di Build. Indica a Docker che il contesto (la directory che contiene il Dockerfile e tutti i file sorgente necessari) è la directory corrente (.). Tutti i file in questa directory verranno inviati al Docker Daemon.</td>
+</tr>
+</tbody>
+</table>
+<h2 id="passo-3-%E2%80%93-esaminare-limmagine">Passo 3 – Esaminare l’immagine</h2>
+<p><strong>Obiettivo</strong></p>
+<ul>
+<li>Comprendere come è costruita un'immagine Docker</li>
+</ul>
+<p><strong>Comandi</strong></p>
+<pre class="hljs"><code><div>docker images
+docker image inspect guestbook:latest
+docker <span class="hljs-built_in">history</span> guestbook:latest
+</div></code></pre>
+<p><strong>Concetti</strong></p>
+<ul>
+<li>layer</li>
+<li>entrypoint e cmd</li>
+<li>dimensione dell’immagine</li>
+</ul>
+<h2 id="passo-4-%E2%80%93-avvio-senza-persistenza">Passo 4 – Avvio senza persistenza</h2>
+<pre class="hljs"><code><div>docker <span class="hljs-keyword">run</span><span class="bash"> -d \
+  --name guestbook \
+  -p 5000:5000 \
+  guestbook:latest</span>
+</div></code></pre>
+<p><strong>Obiettivo</strong></p>
+<ul>
+<li>Mostrare la natura <em>stateless</em> del container</li>
+</ul>
+<p><strong>Attività</strong></p>
+<ul>
+<li>inserire messaggi nel guestbook</li>
+<li>riavviare il container: <code>docker restart [id_container]</code></li>
+<li>verificare se ci sono ancora i dati</li>
+<li>eliminare il container: <code>docker rm [id_container]</code></li>
+<li>avviare di nuovo il servizio</li>
+<li>verificare se ci sono ancora i dati</li>
+</ul>
+<p><strong>Concetti</strong></p>
+<ul>
+<li>lifecycle del container</li>
+<li>filesystem effimero</li>
+<li>livello scrivibile</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>Azione</th>
+<th>Livello scrivibile</th>
+<th>Dati locali</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>docker stop</code></td>
+<td>preservato</td>
+<td>presenti</td>
+</tr>
+<tr>
+<td><code>docker start</code></td>
+<td>riutilizzato</td>
+<td>presenti</td>
+</tr>
+<tr>
+<td><code>docker rm</code></td>
+<td>eliminato</td>
+<td>persi</td>
+</tr>
+<tr>
+<td><code>docker run</code> (nuovo)</td>
+<td>ricreato</td>
+<td>assenti</td>
+</tr>
+</tbody>
+</table>
+<h2 id="passo-5-%E2%80%93-avvio-con-persistenza-tramite-volume">Passo 5 – Avvio con persistenza tramite volume</h2>
+<pre class="hljs"><code><div>docker run -d \
+  --name guestbook \
+  -p 5000:5000 \
+  -v db:/app/instance \
+  guestbook:latest
+</div></code></pre>
+<p><strong>Obiettivo</strong></p>
+<ul>
+<li>Introdurre i volumi come soluzione al problema dello stato</li>
+</ul>
+<p><strong>Concetti</strong></p>
+<ul>
+<li>volume Docker</li>
+<li>separazione applicazione/dati</li>
+<li>mountpoint</li>
+</ul>
+<h2 id="passo-6-%E2%80%93-analisi-del-volume">Passo 6 – Analisi del volume</h2>
+<p><strong>Attività</strong></p>
+<pre class="hljs"><code><div>docker volume ls
+docker volume inspect db
+docker stop guestbook
+docker rm guestbook
+docker run ...
+</div></code></pre>
+<p><strong>Verifica</strong></p>
+<ul>
+<li>i dati persistono dopo ricreazione del container</li>
+</ul>
+<p><strong>Concetti</strong></p>
+<ul>
+<li>ciclo di vita dei volumi</li>
+<li>indipendenza dal container</li>
+</ul>
+<h2 id="passo-7-%E2%80%93-docker-compose-servizio-standalone">Passo 7 – Docker Compose: servizio standalone</h2>
+<pre class="hljs"><code><div><span class="hljs-attr">version:</span> <span class="hljs-string">'3.9'</span>
+<span class="hljs-attr">services:</span>
+  <span class="hljs-attr">guestbook:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">guestbook:latest</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">guestbook</span>
+    <span class="hljs-attr">volumes:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">db:/app/instance</span>
+    <span class="hljs-attr">ports:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">'5000:5000'</span>
+
+<span class="hljs-attr">volumes:</span>
+  <span class="hljs-attr">db:</span>
+</div></code></pre>
+<p><strong>Obiettivo</strong></p>
+<ul>
+<li>Passare da comandi imperativi a configurazione dichiarativa</li>
+</ul>
+<p><strong>Analisi</strong></p>
+<ul>
+<li>volume creato automaticamente</li>
+<li>rete bridge generata da Compose</li>
+<li>naming dei container</li>
+<li>semplificazione operativa</li>
+</ul>
+<p><strong>Comandi</strong></p>
+<pre class="hljs"><code><div>docker compose up
+docker compose up -d
+docker compose ps
+docker compose down 
+docker compose down -v
+</div></code></pre>
+<h2 id="passo-8-%E2%80%93-integrazione-con-database-esterno-mysql--mariadb">Passo 8 – Integrazione con database esterno (MySQL / MariaDB)</h2>
+<h3 id="configurazione-tramite-variabili-dambiente">Configurazione tramite variabili d’ambiente</h3>
+<pre class="hljs"><code><div><span class="hljs-attr">services:</span>
+  <span class="hljs-attr">web:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">guestbook:latest</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">guestbook_web</span>
+    <span class="hljs-attr">ports:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"5000:5000"</span>
+    <span class="hljs-attr">environment:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">DATABASE_HOST=db</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">DATABASE_USER=myuser</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">DATABASE_PASSWORD=mypassword</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">DATABASE_NAME=guestbook_db</span>
+    <span class="hljs-attr">depends_on:</span>
+      <span class="hljs-attr">db:</span>
+        <span class="hljs-attr">condition:</span> <span class="hljs-string">service_healthy</span>
+
+  <span class="hljs-attr">db:</span>
+    <span class="hljs-attr">image:</span> <span class="hljs-string">mysql:8.0</span>
+    <span class="hljs-attr">container_name:</span> <span class="hljs-string">guestbook_mysql_db</span>
+    <span class="hljs-attr">environment:</span>
+      <span class="hljs-attr">MYSQL_ROOT_PASSWORD:</span> <span class="hljs-string">root_password</span>
+      <span class="hljs-attr">MYSQL_USER:</span> <span class="hljs-string">myuser</span>
+      <span class="hljs-attr">MYSQL_PASSWORD:</span> <span class="hljs-string">mypassword</span>
+      <span class="hljs-attr">MYSQL_DATABASE:</span> <span class="hljs-string">guestbook_db</span>
+    <span class="hljs-attr">volumes:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">db_data:/var/lib/mysql</span>
+    <span class="hljs-attr">ports:</span>
+      <span class="hljs-bullet">-</span> <span class="hljs-string">"3306:3306"</span>
+    <span class="hljs-attr">healthcheck:</span>
+      <span class="hljs-comment">#NOT WORKING test: ["CMD", 'mysqladmin', 'ping', '-h', '127.0.0.1', '-u', 'root', '--password=$$MYSQL_ROOT_PASSWORD' ]</span>
+      <span class="hljs-attr">test:</span> <span class="hljs-string">["CMD-SHELL",</span> <span class="hljs-string">"mysql $$MYSQL_DATABASE -u $$MYSQL_USER -p$$MYSQL_PASSWORD -h 127.0.0.1 -e 'select * from messages;' 2&gt;&amp;1"</span><span class="hljs-string">]</span>
+      <span class="hljs-attr">interval:</span> <span class="hljs-string">10s</span>
+      <span class="hljs-attr">timeout:</span> <span class="hljs-string">5s</span>
+      <span class="hljs-attr">retries:</span> <span class="hljs-number">5</span>      
+
+<span class="hljs-attr">volumes:</span>
+  <span class="hljs-attr">db_data:</span>
+</div></code></pre>
+<h3 id="concetti-didattici-fondamentali">Concetti didattici fondamentali</h3>
+<ul>
+<li>DNS interno di Compose</li>
+<li>risoluzione dei nomi di servizio</li>
+<li>isolamento di rete</li>
+<li>configurazione a runtime</li>
+</ul>
+<h3 id="verifiche">Verifiche</h3>
+<ul>
+<li>accesso al DB via <code>docker exec</code></li>
+<li>presenza dei dati nel database</li>
+<li>persistenza tramite volume DB</li>
+</ul>
+<h3 id="istruzioni">Istruzioni</h3>
+<ol>
+<li>collegarsi al container <code>docker exec -it  guestbook_mysql_db /bin/bash</code></li>
+<li>collegarsi al db <code>mysql -u root -p</code> seguito da <code>root_password</code></li>
+<li>verificare che l'utente &quot;myuser&quot; esista</li>
+</ol>
+<pre class="hljs"><code><div>mysql&gt; <span class="hljs-keyword">select</span> <span class="hljs-keyword">user</span> <span class="hljs-keyword">from</span> mysql.user;
++<span class="hljs-comment">------------------+</span>
+| user             |
++<span class="hljs-comment">------------------+</span>
+| myuser           |
+| root             |
+| mysql.infoschema |
+| mysql.session    |
+| mysql.sys        |
+| root             |
++<span class="hljs-comment">------------------+</span>
+
+</div></code></pre>
+<ol start="4">
+<li>verificare che il db &quot;guestbook_db&quot; esista</li>
+</ol>
+<pre class="hljs"><code><div>mysql&gt; <span class="hljs-keyword">show</span> <span class="hljs-keyword">databases</span>;
++<span class="hljs-comment">--------------------+</span>
+| Database           |
++<span class="hljs-comment">--------------------+</span>
+| guestbook_db       |
+| information_schema |
+| mysql              |
+| performance_schema |
+| sys                |
++<span class="hljs-comment">--------------------+</span>
+</div></code></pre>
+<ol start="5">
+<li>verificare che PeeWee abbia creato le tabelle</li>
+</ol>
+<pre class="hljs"><code><div><span class="hljs-keyword">use</span> guestbook_db;
+<span class="hljs-keyword">show</span> <span class="hljs-keyword">tables</span>;
+
++<span class="hljs-comment">------------------------+</span>
+| Tables_in_guestbook_db |
++<span class="hljs-comment">------------------------+</span>
+| messages               |
++<span class="hljs-comment">------------------------+</span>
+</div></code></pre>
+<h2 id="healthcheck-opzionale-ma-consigliato">Healthcheck (opzionale ma consigliato)</h2>
+<p><strong>Perché introdurlo</strong></p>
+<ul>
+<li>distinguere avvio da disponibilità</li>
+<li>rendere l’applicazione osservabile</li>
+</ul>
+<p><strong>Concetti</strong></p>
+<ul>
+<li>stato healthy/unhealthy</li>
+<li>dipendenza tra servizi</li>
+<li>limiti di <code>depends_on</code></li>
+</ul>
+<p><strong>Come verificare</strong></p>
+<ol>
+<li><code>docker ps</code> mostra lo status con timestamp e la salute (healthy)</li>
+<li>cercare la sezione &quot;Health&quot; in <code>docker inspect guestbook_mysql_db</code></li>
+</ol>
+<pre class="hljs"><code><div>docker inspect my_mysql_db | jq '.[0].State.Health.Status'
+</div></code></pre>
+<h2 id="passi-aggiuntivi-consigliati">Passi aggiuntivi consigliati</h2>
+<h3 id="9-variabili-dambiente-vs-configurazione-hard-coded">9. Variabili d’ambiente vs configurazione hard-coded</h3>
+<ul>
+<li><code>.env</code></li>
+<li>override per ambienti diversi</li>
+</ul>
+<h3 id="10-logging">10. Logging</h3>
+<ul>
+<li><code>docker logs</code></li>
+<li>rotazione log con Compose</li>
+<li>separazione log/applicazione</li>
+</ul>
+<h3 id="11-arresto-corretto-dellapplicazione">11. Arresto corretto dell’applicazione</h3>
+<ul>
+<li><code>SIGTERM</code></li>
+<li><code>stop_grace_period</code></li>
+<li>comportamento Flask/Gunicorn</li>
+</ul>
+<h3 id="12-sicurezza-di-base">12. Sicurezza di base</h3>
+<ul>
+<li>utente non root</li>
+<li>filesystem read-only</li>
+<li>esposizione minima delle porte</li>
+</ul>
+
+</body>
+</html>

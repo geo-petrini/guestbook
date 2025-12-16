@@ -1,6 +1,6 @@
+# Tutorial
+## Guestbook: passo a passo verso Docker
 L’applicazione *guestbook* è un esempio creato per introdurre Docker in modo progressivo e concreto.
-
-## Struttura proposta del tutorial
 
 ### Prerequisiti
 
