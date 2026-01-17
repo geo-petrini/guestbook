@@ -2,3 +2,4 @@ readme.md
 .venv
 .env
 instance/
+Jenkinsfile
