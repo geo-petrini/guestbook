@@ -13,11 +13,11 @@ pipeline {
             }
         }
 
-        stage('Install Dependencies') {
-            steps {
-                pip install -r requirements.txt
-            }
-        }
+        // stage('Install Dependencies') {
+        //     steps {
+        //         pip install -r requirements.txt
+        //     }
+        // }
 
         // stage('Run Tests') {
         //     steps {
