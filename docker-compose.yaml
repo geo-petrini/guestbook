@@ -1,7 +1,10 @@
 services:
   web:
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
     image: guestbook:latest
-    container_name: guestbook_web
+    # container_name: guestbook_web #optional as Docker Compose assigns a name
     ports:
       - "5000:5000"
     environment:
@@ -15,7 +18,7 @@ services:
 
   db:
     image: mysql:8.0
-    container_name: guestbook_mysql_db
+    # container_name: guestbook_mysql_db #optional as Docker Compose assigns a name
     environment:
       MYSQL_ROOT_PASSWORD: root_password
       MYSQL_USER: myuser
@@ -23,8 +26,8 @@ services:
       MYSQL_DATABASE: guestbook_db
     volumes:
       - db_data:/var/lib/mysql
-    ports:
-      - "3306:3306"
+    # ports:
+      # - "3306:3306"
     healthcheck:
       #NOT WORKING test: ["CMD", 'mysqladmin', 'ping', '-h', '127.0.0.1', '-u', 'root', '--password=$$MYSQL_ROOT_PASSWORD' ]
       test: ["CMD-SHELL", "mysql $$MYSQL_DATABASE -u $$MYSQL_USER -p$$MYSQL_PASSWORD -h 127.0.0.1 -e 'show tables;' 2>&1"]
